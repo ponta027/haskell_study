@@ -27,7 +27,7 @@ publishThread c = runRedis c $ loop (0 :: Int)
       void $ publish "bar" ("bar" <> msg)
       void $ publish "baz:1" ("baz1" <> msg)
       void $ publish "baz:2" ("baz2" <> msg)
-      liftIO $ threadDelay $ 20*1000*1000 -- 2 seconds
+      liftIO $ threadDelay $ 2*1000*1000 -- 2 seconds
       loop (i+1)
 
 onInitialComplete :: IO ()

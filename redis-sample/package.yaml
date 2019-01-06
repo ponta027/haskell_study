@@ -33,7 +33,7 @@ library:
     - async
 
 executables:
-  redis-sample-exe2:
+  redis-pubsub-exe:
     main:                ManualPubSub.hs
     source-dirs:         pubsub
     ghc-options:
