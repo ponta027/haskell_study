@@ -1,0 +1,135 @@
+name:                multicores
+version:             0.1.0.0
+github:              "githubuser/multicores"
+license:             BSD3
+author:              "Author name here"
+maintainer:          "example@example.com"
+copyright:           "2019 Author name here"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/githubuser/multicores#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+
+executables:
+  multicores-exe:
+    main:                Main.hs
+    source-dirs:         app/intro
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - multicores
+    - parallel 
+  thread-exe:
+    main:                Main.hs
+    source-dirs:         app/threads
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - multicores
+    - parallel 
+    - pureMD5
+    - bytestring
+  synch-exe:
+    main:                Main.hs
+    source-dirs:         app/synchronization
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - multicores
+    - parallel 
+    - pureMD5
+    - bytestring
+  message-exe:
+    main:                Main.hs
+    source-dirs:         app/messagePassing
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - multicores
+    - parallel 
+    - pureMD5
+    - bytestring
+  simple-stm-exe:
+    main:                Main.hs
+    source-dirs:         app/simplestm
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - multicores
+    - parallel 
+    - pureMD5
+    - bytestring
+    - stm
+  graceful-exe:
+    main:                Main.hs
+    source-dirs:         app/graceful
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - multicores
+    - parallel 
+    - pureMD5
+    - bytestring
+    - stm
+    - network
+  twoReaderThreads-exe:
+    main:                Main.hs
+    source-dirs:         app/twoReaderThreads
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - multicores
+    - parallel 
+    - pureMD5
+    - bytestring
+    - stm
+    - network
+
+
+
+
+
+
+
+
+
+
+tests:
+  multicores-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - multicores
