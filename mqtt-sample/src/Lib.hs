@@ -27,6 +27,7 @@ handleMsg msg =
 
 someFunc :: IO ()
 someFunc = do
+  print "START"
   cmds <- MQTT.mkCommands
   pubChan <- newTChanIO
   let conf = (MQTT.defaultConfig cmds pubChan)
