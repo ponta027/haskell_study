@@ -1,0 +1,41 @@
+<html>
+    <head lang="en">
+    <meta charset="UTF-8">
+        <title>sample</title>
+        <script type="text/javascript" src="ws.js"></script>
+        <link rel="stylesheet" type="text/css" href="ws.css">
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="http://vizjs.org/viz.v1.0.0.min.js"></script>
+
+    </head>
+    <body>
+        <h1>spock websockets</h1>
+        <p>Counter:<span id="counter"></span></p>
+        <p id="boxes1" class="boxes"/>
+        <p id="boxes10" class="boxes"/>
+
+        <p>
+<svg width="900" height="700"></svg>
+        </p>
+<script>
+  var svg=d3.select("svg");
+  var g=svg.append("g").attr("transform","translate(450,350)");
+  var domain = [0,100];
+  
+  var gg = viz.gg()
+.domain(domain)
+.outerRadius(300)
+.innerRadius(30)
+.value(0.5*(domain[1]+domain[0]))
+.duration(1000);
+  
+  gg.defs(svg);
+  g.call(gg);  
+  
+  d3.select(self.frameElement).style("height", "700px");
+  setInterval( function(){gg.setNeedle(getCounterValue()%100);},1000);
+</script>
+
+
+    </body>
+</html>
