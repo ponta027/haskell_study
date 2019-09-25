@@ -1,5 +1,6 @@
-{-# LANGUAGE CPP, OverloadedStrings, RecordWildCards, LambdaCase #-}
+{-# LANGUAGE CPP, OverloadedStrings #-}
 {-# LANGUAGE ScopedTypeVariables #-}
+
 module Lib
     ( someFunc
     , subscriber
@@ -8,9 +9,9 @@ module Lib
     ) where
 
 import Database.Redis
---import qualified Control.Concurrent.Async as Async
+-- import qualified Control.Concurrent.Async as Async
 import Control.Exception
---import Control.Exception (try,SomeException)
+-- import Control.Exception (try,SomeException)
 import Control.Concurrent
 import qualified Control.Concurrent.Async as A
 import Control.Monad
@@ -27,11 +28,11 @@ import System.IO
 someFunc :: IO ()
 someFunc = do
     conn <- checkedConnect defaultConnectInfo
-    tmp <- sample conn
+    tmp <- kVSSample conn
     disconnect conn
     putStrLn "someFunc"
 
-sample conn = 
+kVSSample conn = 
     runRedis conn $ do
     set "hello" "hello"
     set "world" "world"

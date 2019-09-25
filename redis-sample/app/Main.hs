@@ -6,7 +6,7 @@ import System.Environment(getArgs)
 main :: IO ()
 main = do
     args <- getArgs
-    case args !! 0 of 
+    case head args  of 
         "client" -> someFunc
         "subscribe" -> subscriber
         "publish"   -> publisher 

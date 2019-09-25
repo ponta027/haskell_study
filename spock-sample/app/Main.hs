@@ -52,6 +52,8 @@ appMiddlewares = do
     middleware (staticPolicy $ noDots >-> addBase "static")     -- add static files
     middleware wsMiddleware                                     -- add websocket
 
+--| websocket definition
+--| 
 wsMiddleware :: Middleware
 wsMiddleware =  websocketsOr defaultConnectionOptions wsApp
     where
@@ -80,7 +82,8 @@ main = do
 
 app :: (PName->Value->Text) -> Api
 app render= do
-  get root $ html ( render "index" (object ["text" .= ("Spock"::Text)]))
+  -- get root $ html ( render "index" (object ["text" .= ("Spock"::Text)]))
+  get root $ action render
   get "people" $ do
     json [Person { name = "Fry", age = 25 }, Person { name = "Bender", age = 4 }]
   post "people" $ do
@@ -90,4 +93,8 @@ app render= do
            do (DummyAppState ref) <- getState
               visitorNumber <- liftIO $ atomicModifyIORef' ref $ \i -> (i+1, i+1)
               text ("Hello " <> pname <> ", you are visitor number " <> pack (show visitorNumber))
+
+
+action :: (PName -> Value -> Text ) -> ActionCtxT ctx (WebStateM () MySession MyAppState) a
+action render = html ( render "index" (object ["text" .= ("Spock"::Text)]))
 

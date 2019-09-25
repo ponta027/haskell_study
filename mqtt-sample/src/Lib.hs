@@ -1,5 +1,7 @@
 {-# Language DataKinds, OverloadedStrings #-}
-module Lib(someFunc) where
+module Lib(someFunc
+    ,mqttSample
+) where
 import Control.Concurrent
 import Control.Concurrent.STM
 import Control.Monad (unless, forever)
@@ -25,8 +27,27 @@ handleMsg msg =
         "topic2" : bar   -> print bar
         _unexpected -> putStrLn $ "unexpected message on '" ++ show t ++ "': " ++ show p
 
+-- | sample
 someFunc :: IO ()
-someFunc = do
+someFunc = do 
+    mqttSample
+
+-- | mqttSample sequence
+--
+--  1. create Command Channel ( Control.Currents.STM.TChan)
+--
+--  2. newTChan ( TChan ) : FIFO Channel
+--
+--  3. createConfig defaultConfg:: Comands -> TChan (Message PUBLISH) -> Config
+--
+--  4. forkIO . MQTT.subscribe:: Config -> [(Topic,QoS)] -> IO [Qos]
+--
+--  5. forever and atomically readTChan pubChan and handleMsg (readTChan pubChan)
+--
+--  forever :: Applicative f = f a -> f b
+
+mqttSample :: IO ()
+mqttSample = do
   print "START"
   cmds <- MQTT.mkCommands
   pubChan <- newTChanIO
@@ -43,6 +64,5 @@ someFunc = do
         hPutStrLn stderr $ "Wanted QoS Handshake, got " ++ show qosGranted
         exitFailure
 
-  -- this will throw IOExceptions
   terminated <- MQTT.run conf
   print terminated

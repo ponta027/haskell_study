@@ -36,9 +36,14 @@ executables:
     dependencies:
     - spock-sample
     - Spock >= 0.11
+    - Spock-core
     - mtl
     - text
+    - wai
     - wai-extra
+    - wai-websockets
+    - wai-middleware-static
+    - websockets
     - stache
     - aeson
 

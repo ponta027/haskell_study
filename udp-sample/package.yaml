@@ -27,6 +27,7 @@ library:
   dependencies:
       - network
       - bytestring
+      - daemon
 
 executables:
   udp-sample-exe:
