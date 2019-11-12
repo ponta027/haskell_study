@@ -27,7 +27,10 @@ library:
   dependencies:
       - network
       - bytestring
-      - daemon
+      - daemons
+      - data-default
+      - cereal
+      - containers
 
 executables:
   udp-sample-exe:

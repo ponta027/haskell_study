@@ -38,6 +38,8 @@ packages:
 # using the same syntax as the packages field.
 # (e.g., acme-missiles-0.3)
 # extra-deps: []
+extra-deps:
+- daemons-0.2.1@sha256:4a87dfd8c92ce39aab722450288df17fa2e6b528aec4a7adb16ac6999bc811a3
 
 # Override default flag values for local packages and extra-deps
 # flags: {}
